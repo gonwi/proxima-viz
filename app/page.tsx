@@ -48,10 +48,7 @@ export default function Home() {
       {/* Header */}
       <Header />
 
-      {/* Vehicle Selector - Below navbar, centered */}
-      <div className="relative z-20 flex justify-center py-4 border-b border-white/5">
-        <VehicleSelector selectedVehicle={selectedVehicle} onVehicleChange={setSelectedVehicle} />
-      </div>
+  
 
       {/* Main 3D Scene */}
       <div className="flex-1 relative z-10">
