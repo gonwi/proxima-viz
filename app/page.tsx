@@ -7,15 +7,16 @@ import { Header } from "@/components/header"
 import { getAssetCount, preloadAssets } from "@/lib/asset-preload"
 import { VehicleSelector, type DronePayload } from "@/components/vehicle-selector"
 import { Input } from "@/components/ui/input"
+import Image from "next/image"
 
 const PASSWORD = "letmein"
 
 export default function Home() {
   const [version, setVersion] = useState<DroneVersion>("v2")
   const [view, setView] = useState<DroneViewMode>("full")
-  const [payload, setPayload] = useState<DronePayload>("none")
-  const [tetherEnabled, setTetherEnabled] = useState(true)
-  const [environment, setEnvironment] = useState<ViewerEnvironment>("studio")
+  const [payload, setPayload] = useState<DronePayload>("spectrum-500")
+  const [tetherEnabled, setTetherEnabled] = useState(false)
+  const [environment, setEnvironment] = useState<ViewerEnvironment>("park")
   const [password, setPassword] = useState("")
   const [loginError, setLoginError] = useState("")
   const [authenticated, setAuthenticated] = useState(false)
@@ -86,31 +87,18 @@ export default function Home() {
           onSubmit={handleLogin}
           className="ui-surface-premium noise-overlay relative z-10 flex w-full max-w-[26rem] flex-col gap-5 px-6 py-6 sm:px-7"
         >
-          <div className="space-y-3">
-            <div className="ui-kicker w-fit">Secure Access</div>
-            <h1 className="font-display text-[2rem] font-semibold uppercase tracking-[-0.06em] text-white sm:text-[2.4rem]">
-              Proxima 29
-            </h1>
-            <p className="max-w-sm text-sm leading-6 text-white/62">
-              Internal review environment for aircraft configuration and payload visualization.
-            </p>
+          <div className="flex justify-center py-1">
+            <Image src="/air-ready.svg" alt="Air-Ready" width={118} height={28} className="h-5 w-auto object-contain opacity-90" />
           </div>
 
           <div className="space-y-2.5">
-            <label className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/44">Password</label>
             <Input
               type="password"
-              placeholder="Enter access credential"
+              placeholder="Password"
               value={password}
               onChange={(e) => handlePasswordChange(e.target.value)}
               className="h-12 border-white/10 bg-white/[0.02] px-4 text-white placeholder:text-white/24"
             />
-            <div className="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.16em] text-white/34">
-              <span>System warmup</span>
-              <span>
-                {warmupLoaded}/{warmupTotal}
-              </span>
-            </div>
             <div className="h-[2px] w-full overflow-hidden bg-white/6">
               <div
                 className="h-full bg-[#a62121] transition-[width] duration-500"
@@ -151,11 +139,12 @@ export default function Home() {
         <div className="grid h-full grid-cols-1 gap-3 lg:grid-cols-[22rem_minmax(0,1fr)] xl:grid-cols-[22.5rem_minmax(0,1fr)]">
           <aside className="ui-surface-premium noise-overlay flex min-h-0 flex-col px-4 py-4 sm:px-5">
             <div className="space-y-3">
-              <h1 className="font-display text-[2rem] font-semibold uppercase tracking-[-0.06em] text-white sm:text-[2.4rem]">
-                Proxima 29
-              </h1>
+              <div className="ui-surface flex items-center gap-3 px-3 py-3">
+                <Image src="/air-ready.svg" alt="Air-Ready" width={98} height={24} className="h-4 w-auto object-contain opacity-90" />
+                <span className="text-[14px] font-medium uppercase tracking-[0.16em] text-white/74">XL18T</span>
+              </div>
               <p className="max-w-sm text-[13px] leading-5 text-white/60">
-                Review airframe, payload, and environment.
+                Review airframe, payload, tether, and environment.
               </p>
             </div>
 
@@ -174,9 +163,10 @@ export default function Home() {
 
             <div className="mt-4 grid gap-2 border-t border-white/10 pt-4">
               <p className="text-[10px] uppercase tracking-[0.22em] text-white/30">Background</p>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {[
                   { key: "studio", label: "Studio" },
+                  { key: "park", label: "Park" },
                   { key: "stadium", label: "Orlando" },
                 ].map((option) => {
                   const active = environment === option.key

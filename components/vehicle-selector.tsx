@@ -263,7 +263,7 @@ export function VehicleSelector({
               <div className="min-w-0">
                 <span className="block truncate text-[13px] font-medium">Tether</span>
                 <span className={cn("text-[10px] uppercase tracking-[0.22em]", tetherEnabled ? "text-white/52" : "text-white/28")}>
-                  Power link
+                  Cable
                 </span>
               </div>
             </div>

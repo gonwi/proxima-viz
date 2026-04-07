@@ -11,7 +11,7 @@ import type { DronePayload } from "@/components/vehicle-selector"
 
 export type DroneVersion = "v1" | "v2"
 export type DroneViewMode = "full" | "folded" | "box"
-export type ViewerEnvironment = "studio" | "stadium"
+export type ViewerEnvironment = "park" | "studio" | "stadium"
 
 interface DroneViewerProps {
   version: DroneVersion
@@ -198,6 +198,8 @@ function Scene({
 
       {environment === "stadium" ? (
         <Environment files="/orlando_stadium_4k.exr" background />
+      ) : environment === "park" ? (
+        <Environment files="/flamingo_pan_4k.exr" background />
       ) : (
         <>
           <Environment files="/flamingo_pan_4k.exr" background />
