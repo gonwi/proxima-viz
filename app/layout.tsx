@@ -1,21 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
 import "./globals.css"
 
-const geist = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
-
 export const metadata: Metadata = {
-  title: "Proxima Drone Visualizer",
-  description: "3D visualization of ProximaVision aerospace drone variants",
+  title: "Proxima 29 | Product Theater",
+  description: "Full-screen product visualization environment for Proxima 29 airframe and payload configurations.",
 }
 
 export default function RootLayout({
@@ -25,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>{children}</body>
     </html>
   )
 }
